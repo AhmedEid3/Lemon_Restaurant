@@ -1,8 +1,14 @@
+import Footer from './components/footer/footer';
+import Header from './components/header/header';
+import Main from './components/main/main';
+
 function App() {
   return (
-    <main>
-      <h1>Lemon Restaurant</h1>
-    </main>
+    <>
+      <Header />
+      <Main />
+      <Footer />
+    </>
   );
 }
 
