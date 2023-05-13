@@ -7,7 +7,7 @@ const Review = ({ rating, user, reviewText }: ReviewType) => {
     <div>
       <Rating nStars={rating} />
       <UserProfile {...user} />
-      <p>{reviewText}</p>
+      <p className="paragraph">{reviewText}</p>
     </div>
   );
 };

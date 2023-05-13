@@ -1,14 +1,13 @@
 import UserProfileType from './user-profile.type';
 
+import './user-profile.css';
+
 const UserProfile = ({ imgLink, userName }: UserProfileType) => {
   return (
-    <div>
-      <img
-        style={{ maxWidth: '100%', height: 'auto' }}
-        src={imgLink}
-        alt={userName}
-      />
-      <p>{userName}</p>
+    <div className="user-profile">
+      <img className="user-profile__image" src={imgLink} alt={userName} />
+
+      <p className="paragraph">{userName}</p>
     </div>
   );
 };
