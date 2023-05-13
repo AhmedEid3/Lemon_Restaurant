@@ -1,0 +1,7 @@
+.container-img {
+  max-width: 300px;
+  max-height: 350px;
+  overflow: hidden;
+  position: relative;
+  top: 3rem;
+}
