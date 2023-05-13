@@ -4,6 +4,7 @@ import greekSalad from '../../assets/greek_salad.jpg';
 import bruschetta from '../../assets/bruschetta.webp';
 import lemonDessert from '../../assets/lemon_dessert.jpg';
 import { useState } from 'react';
+import Button from '../button/Button';
 
 const Highlights = () => {
   const [dishes] = useState<Array<DishType>>([
@@ -31,14 +32,19 @@ const Highlights = () => {
   ]);
 
   return (
-    <section>
-      <header>
-        <h2>Specials</h2>
-        <button>Online Menu</button>
+    <section className="container mt-5 pt-5">
+      <header className="my-3 display-flex justify-content-between align-items-center flex-wrap">
+        <h2 className="special-title">This Week Specials!</h2>
+        <Button>Online Menu</Button>
       </header>
-      {dishes.map((dish) => (
-        <HighlightCard key={dish.title} {...dish} />
-      ))}
+
+      <div className="row ">
+        {dishes.map((dish) => (
+          <div key={dish.title} className="col-sm-6 col-md-4 mb-2">
+            <HighlightCard {...dish} />
+          </div>
+        ))}
+      </div>
     </section>
   );
 };
