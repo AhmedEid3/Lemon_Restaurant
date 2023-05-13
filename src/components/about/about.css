@@ -1,0 +1,21 @@
+.about__container-img {
+  max-width: 300px;
+  max-height: 350px;
+  position: relative;
+}
+
+.about__container-img--2 {
+  position: absolute;
+  top: 3rem;
+  left: -8rem;
+}
+
+@media (max-width: 991px) {
+  .about__container-img {
+    max-width: 250px;
+  }
+
+  .about__container-img--2 {
+    left: -3rem;
+  }
+}
