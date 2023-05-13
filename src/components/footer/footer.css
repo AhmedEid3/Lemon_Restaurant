@@ -1,0 +1,20 @@
+@import '../../styles/colors.css';
+
+.footer__menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer__menu__item {
+  display: block;
+  text-transform: capitalize;
+  padding: 0.25rem 1rem;
+  color: var(--highlight-dark-color);
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
