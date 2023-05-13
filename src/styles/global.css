@@ -1,0 +1,8 @@
+/* Font Markazi */
+@import 'https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;500;600;700&display=swap';
+/* Font Karla */
+@import 'https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700;800&display=swap';
+
+@import './grid-system.css';
+@import './type-system.css';
+@import './utils.css';

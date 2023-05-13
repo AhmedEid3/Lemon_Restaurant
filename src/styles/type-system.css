@@ -1,0 +1,66 @@
+.heading {
+  margin: 0;
+  font-size: 4rem;
+  line-height: 1;
+  font-weight: 600;
+  font-family: 'Markazi Text', 'Karla', serif;
+}
+
+@media (max-width: 767px) {
+  .heading {
+    font-size: 3rem;
+  }
+}
+
+.subtitle {
+  margin: 0;
+  line-height: 1;
+  font-size: 2.5rem;
+  font-weight: 500;
+  font-family: 'Markazi Text', 'Karla', serif;
+}
+
+@media (max-width: 767px) {
+  .subtitle {
+    font-size: 2.5rem;
+  }
+}
+
+.lead {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.special-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+@media (max-width: 767px) {
+  .special-title {
+    font-size: 1.75rem;
+  }
+}
+
+.card-title,
+.footer-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+.paragraph {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  max-width: 30ch;
+}
+
+.price-text {
+  font-size: 1rem;
+  font-weight: 600;
+}
