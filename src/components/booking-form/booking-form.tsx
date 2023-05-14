@@ -121,7 +121,7 @@ const BookingForm = ({ availableTimes, updateTimes, onSubmit }: Props) => {
           ))}
         </select>
 
-        <button disabled={!isValidInputs()} type="submit">
+        <button aria-label="On Click" disabled={!isValidInputs()} type="submit">
           Book Now
         </button>
       </form>
