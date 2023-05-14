@@ -6,7 +6,9 @@ const Layout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <Header />
+      <div className="border-top-line" />
       {children}
+      <div className="border-bottom-line" />
       <Footer />
     </>
   );

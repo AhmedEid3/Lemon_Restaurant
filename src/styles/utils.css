@@ -1,3 +1,5 @@
+@import './colors.css';
+
 :root {
   --border-color: rgb(73, 80, 87);
   --margin-1: 0.5rem;
@@ -23,6 +25,13 @@
   border-radius: 6px;
   padding: 0.25rem;
   border: 1px solid var(--border-color);
+}
+
+.border-top-line {
+  border-top: 1px solid var(--primary-color);
+}
+.border-bottom-line {
+  border-bottom: 1px solid var(--primary-color);
 }
 
 .rounded {
