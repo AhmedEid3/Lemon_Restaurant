@@ -8,7 +8,7 @@ const seededRandom = function (seed: number) {
   };
 };
 
-export const fetchAPI = function (date: Date) {
+export const fetchAPI = async function (date: Date) {
   const result: Array<string> = [];
   const random = seededRandom(date.getDate());
 
@@ -20,9 +20,9 @@ export const fetchAPI = function (date: Date) {
       result.push(i.toString() + ':30');
     }
   }
-  return result;
+  return Promise.resolve(result);
 };
 
-export const submitAPI = function (_formData: any) {
-  return true;
+export const submitAPI = async function (_formData: any) {
+  return Promise.resolve(true);
 };
