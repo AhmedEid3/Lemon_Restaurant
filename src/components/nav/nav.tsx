@@ -2,6 +2,7 @@ import { PropsWithChildren } from 'react';
 
 import { NavLink } from 'react-router-dom';
 import './nav.style.css';
+import Routing from '../../routes/Routing';
 
 interface Props extends PropsWithChildren {
   link: string;
@@ -26,12 +27,12 @@ const Nav = () => {
   return (
     <nav>
       <ul className="navbar">
-        <NavItem link="/">home</NavItem>
-        <NavItem link="/about">about</NavItem>
-        <NavItem link="/menu">menu</NavItem>
-        <NavItem link="/booking">reservations</NavItem>
-        <NavItem link="/order">order online</NavItem>
-        <NavItem link="/login">login</NavItem>
+        <NavItem link={Routing.homeLink}>home</NavItem>
+        <NavItem link={Routing.aboutLink}>about</NavItem>
+        <NavItem link={Routing.menuLink}>menu</NavItem>
+        <NavItem link={Routing.bookingLink}>reservations</NavItem>
+        <NavItem link={Routing.orderLink}>order online</NavItem>
+        <NavItem link={Routing.loginLink}>login</NavItem>
       </ul>
     </nav>
   );

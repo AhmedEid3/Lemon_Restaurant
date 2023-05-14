@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import Logo from '../logo/logo';
 import './footer.css';
+import Routing from '../../routes/Routing';
 
 const Footer = () => {
   return (
@@ -17,32 +18,44 @@ const Footer = () => {
             <h2 className="footer-title">Doormat Navigation</h2>
             <ul className="footer__menu">
               <li>
-                <NavLink to="/" className={'footer__menu__item'}>
+                <NavLink to={Routing.homeLink} className={'footer__menu__item'}>
                   Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/about" className={'footer__menu__item'}>
+                <NavLink
+                  to={Routing.aboutLink}
+                  className={'footer__menu__item'}
+                >
                   About
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/menu" className={'footer__menu__item'}>
+                <NavLink to={Routing.menuLink} className={'footer__menu__item'}>
                   Menu
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/booking" className={'footer__menu__item'}>
+                <NavLink
+                  to={Routing.bookingLink}
+                  className={'footer__menu__item'}
+                >
                   Reservations
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/order" className={'footer__menu__item'}>
+                <NavLink
+                  to={Routing.orderLink}
+                  className={'footer__menu__item'}
+                >
                   Order Online
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/login" className={'footer__menu__item'}>
+                <NavLink
+                  to={Routing.loginLink}
+                  className={'footer__menu__item'}
+                >
                   Login
                 </NavLink>
               </li>
