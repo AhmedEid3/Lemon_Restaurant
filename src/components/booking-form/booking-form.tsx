@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Booking {
   reservationDate: string;
@@ -9,17 +9,18 @@ interface Booking {
 
 interface Props {
   availableTimes: Array<string>;
+  updateTimes: (selectedDate: string) => void;
 }
 
-const BookingForm = ({ availableTimes }: Props) => {
+const BookingForm = ({ availableTimes, updateTimes }: Props) => {
   const { current: occasion } = useRef(['birthday', 'anniversary']);
 
-  const { current: initBooking } = useRef({
-    reservationDate: '',
-    reservationTime: availableTimes[0],
+  const initBooking = {
     guests: 1,
     occasion: occasion[0],
-  });
+    reservationTime: availableTimes[0],
+    reservationDate: '',
+  };
 
   const [bookingValues, setBookingValues] = useState<Booking>(initBooking);
 
@@ -28,10 +29,16 @@ const BookingForm = ({ availableTimes }: Props) => {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLSelectElement>
   ) => {
+    const value = event.target.value;
+
     setBookingValues((prev) => ({
       ...prev,
-      [event.target.id]: event.target.value,
+      [event.target.id]: value,
     }));
+
+    if (event.target.id === 'reservationDate') {
+      updateTimes(value);
+    }
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -39,6 +46,13 @@ const BookingForm = ({ availableTimes }: Props) => {
     console.log(bookingValues);
     setBookingValues(initBooking);
   };
+
+  useEffect(() => {
+    setBookingValues((prev) => ({
+      ...prev,
+      reservationTime: availableTimes[0],
+    }));
+  }, [availableTimes]);
 
   return (
     <div className="container">

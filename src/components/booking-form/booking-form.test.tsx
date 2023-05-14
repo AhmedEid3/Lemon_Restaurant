@@ -8,7 +8,9 @@ const availableTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
 
 describe('BookingForm Component', () => {
   it('should render correctly', () => {
-    render(<BookingForm availableTimes={availableTimes} />);
+    render(
+      <BookingForm availableTimes={availableTimes} updateTimes={vitest.fn} />
+    );
     const form = screen.getByTestId('form');
     const reservationDateInput = screen.getByTestId('reservationDate');
     const reservationTimeInput = screen.getByTestId('reservationTime');
@@ -27,15 +29,19 @@ describe('BookingForm Component', () => {
   });
 
   it('should reservation date input working properly', async () => {
-    render(<BookingForm availableTimes={availableTimes} />);
+    render(
+      <BookingForm availableTimes={availableTimes} updateTimes={vitest.fn} />
+    );
 
     const reservationDateInput = screen.getByTestId('reservationDate');
-    await userEvents.type(reservationDateInput, '2023-05-15');
-    expect(reservationDateInput).toHaveValue('2023-05-15');
+    await userEvents.type(reservationDateInput, '2023-05-16');
+    expect(reservationDateInput).toHaveValue('2023-05-16');
   });
 
   it('should reservation time input working properly', async () => {
-    render(<BookingForm availableTimes={availableTimes} />);
+    render(
+      <BookingForm availableTimes={availableTimes} updateTimes={vitest.fn} />
+    );
 
     const reservationTimeInput = screen.getByTestId('reservationTime');
     const reservationTimeOptionInput = screen.getByRole('option', {
@@ -46,7 +52,9 @@ describe('BookingForm Component', () => {
   });
 
   it('should number of guests input working properly', async () => {
-    render(<BookingForm availableTimes={availableTimes} />);
+    render(
+      <BookingForm availableTimes={availableTimes} updateTimes={vitest.fn} />
+    );
 
     const numberOfGuestInput = screen.getByTestId('guests');
     await userEvents.clear(numberOfGuestInput);
@@ -67,7 +75,9 @@ describe('BookingForm Component', () => {
   });
 
   it('should occasion input working properly', async () => {
-    render(<BookingForm availableTimes={availableTimes} />);
+    render(
+      <BookingForm availableTimes={availableTimes} updateTimes={vitest.fn} />
+    );
     const occasionInput = screen.getByTestId('occasion');
     const anniversaryOption = screen.getByRole('option', {
       name: /anniversary/i,
@@ -78,7 +88,9 @@ describe('BookingForm Component', () => {
   });
 
   it('should form rest to init value after submitting', () => {
-    render(<BookingForm availableTimes={availableTimes} />);
+    render(
+      <BookingForm availableTimes={availableTimes} updateTimes={vitest.fn} />
+    );
 
     const form = screen.getByTestId('form');
     const reservationDateInput = screen.getByTestId('reservationDate');

@@ -1,18 +1,21 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import BookingForm from '../components/booking-form/booking-form';
+import { fetchAPI } from '../hooks/mockFetchBooking';
 
 interface Action {
   type: 'init' | 'update';
-  payload: string;
+  payload: Array<string>;
 }
 
 const availableTimesReducer = (state: Array<string>, action: Action) => {
   switch (action.type) {
     case 'init': {
+      state = action.payload;
       return state;
     }
 
     case 'update': {
+      state = action.payload;
       return state;
     }
 
@@ -22,26 +25,23 @@ const availableTimesReducer = (state: Array<string>, action: Action) => {
 };
 
 const BookingPage = () => {
-  const [availableTimes, dispatch] = useReducer(availableTimesReducer, [
-    '17:00',
-    '18:00',
-    '19:00',
-    '20:00',
-    '21:00',
-    '22:00',
-  ]);
+  const [availableTimes, dispatch] = useReducer(availableTimesReducer, []);
 
-  const initializeTimes = (initTime: string) => {
-    dispatch({ type: 'init', payload: initTime });
+  const initializeTimes = () => {
+    dispatch({ type: 'init', payload: fetchAPI(new Date()) });
   };
 
   const updateTimes = (selectedDate: string) => {
-    dispatch({ type: 'update', payload: selectedDate });
+    dispatch({ type: 'update', payload: fetchAPI(new Date(selectedDate)) });
   };
+
+  useEffect(() => {
+    initializeTimes();
+  }, []);
 
   return (
     <div>
-      <BookingForm availableTimes={availableTimes} />
+      <BookingForm availableTimes={availableTimes} updateTimes={updateTimes} />
     </div>
   );
 };
