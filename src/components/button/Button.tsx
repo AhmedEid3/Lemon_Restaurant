@@ -1,21 +1,23 @@
 import { PropsWithChildren } from 'react';
 import './button.css';
 
-interface PropsBase extends PropsWithChildren {
+type ButtonProps = React.ComponentProps<'button'>;
+
+interface PropsBase extends PropsWithChildren, ButtonProps {
   onClick?: () => void;
   variant?: 'primary' | 'outlined' | 'none';
   className?: string;
 }
 
-const BaseButton = ({ children, className, onClick }: PropsBase) => {
+const BaseButton = ({ children, className, onClick, ...props }: PropsBase) => {
   return (
-    <button className={`btn ${className ?? ''}`} onClick={onClick}>
+    <button className={`btn ${className ?? ''}`} onClick={onClick} {...props}>
       {children}
     </button>
   );
 };
 
-interface Props extends PropsWithChildren {
+interface Props extends PropsWithChildren, ButtonProps {
   onClick?: () => void;
   variant?: 'primary' | 'none';
 }

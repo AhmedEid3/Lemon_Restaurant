@@ -35,3 +35,11 @@
     border-color: var(--primary-color);
   }
 }
+
+.btn[disabled] {
+  cursor: not-allowed;
+  background-color: var(--highlight-light-color);
+  &:hover {
+    color: inherit;
+  }
+}
