@@ -1,18 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-
-interface Booking {
-  reservationDate: string;
-  reservationTime: string;
-  guests: number;
-  occasion: string;
-}
+import { Booking } from './booking.type';
 
 interface Props {
   availableTimes: Array<string>;
-  updateTimes: (selectedDate: string) => void;
+  updateTimes: (selectedDate: string) => Promise<void>;
+  onSubmit: (bookingValues: Booking) => Promise<void>;
 }
 
-const BookingForm = ({ availableTimes, updateTimes }: Props) => {
+const BookingForm = ({ availableTimes, updateTimes, onSubmit }: Props) => {
   const { current: occasion } = useRef(['birthday', 'anniversary']);
 
   const initBooking = {
@@ -24,7 +19,7 @@ const BookingForm = ({ availableTimes, updateTimes }: Props) => {
 
   const [bookingValues, setBookingValues] = useState<Booking>(initBooking);
 
-  const handleChangeInput = (
+  const handleChangeInput = async (
     event:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLSelectElement>
@@ -37,13 +32,14 @@ const BookingForm = ({ availableTimes, updateTimes }: Props) => {
     }));
 
     if (event.target.id === 'reservationDate') {
-      updateTimes(value);
+      await updateTimes(value);
     }
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(bookingValues);
+    await onSubmit(bookingValues);
     setBookingValues(initBooking);
   };
 

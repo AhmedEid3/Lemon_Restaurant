@@ -8,9 +8,16 @@ const availableTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
 
 describe('BookingForm Component', () => {
   it('should render correctly', () => {
+    const mockUpdateTime = vitest.fn(() => Promise.resolve());
+    const mockOnSubmit = vitest.fn(() => Promise.resolve());
     render(
-      <BookingForm availableTimes={availableTimes} updateTimes={vitest.fn} />
+      <BookingForm
+        availableTimes={availableTimes}
+        updateTimes={mockUpdateTime}
+        onSubmit={mockOnSubmit}
+      />
     );
+
     const form = screen.getByTestId('form');
     const reservationDateInput = screen.getByTestId('reservationDate');
     const reservationTimeInput = screen.getByTestId('reservationTime');
@@ -29,8 +36,14 @@ describe('BookingForm Component', () => {
   });
 
   it('should reservation date input working properly', async () => {
+    const mockUpdateTime = vitest.fn(() => Promise.resolve());
+    const mockOnSubmit = vitest.fn(() => Promise.resolve());
     render(
-      <BookingForm availableTimes={availableTimes} updateTimes={vitest.fn} />
+      <BookingForm
+        availableTimes={availableTimes}
+        updateTimes={mockUpdateTime}
+        onSubmit={mockOnSubmit}
+      />
     );
 
     const reservationDateInput = screen.getByTestId('reservationDate');
@@ -39,8 +52,14 @@ describe('BookingForm Component', () => {
   });
 
   it('should reservation time input working properly', async () => {
+    const mockUpdateTime = vitest.fn(() => Promise.resolve());
+    const mockOnSubmit = vitest.fn(() => Promise.resolve());
     render(
-      <BookingForm availableTimes={availableTimes} updateTimes={vitest.fn} />
+      <BookingForm
+        availableTimes={availableTimes}
+        updateTimes={mockUpdateTime}
+        onSubmit={mockOnSubmit}
+      />
     );
 
     const reservationTimeInput = screen.getByTestId('reservationTime');
@@ -52,8 +71,14 @@ describe('BookingForm Component', () => {
   });
 
   it('should number of guests input working properly', async () => {
+    const mockUpdateTime = vitest.fn(() => Promise.resolve());
+    const mockOnSubmit = vitest.fn(() => Promise.resolve());
     render(
-      <BookingForm availableTimes={availableTimes} updateTimes={vitest.fn} />
+      <BookingForm
+        availableTimes={availableTimes}
+        updateTimes={mockUpdateTime}
+        onSubmit={mockOnSubmit}
+      />
     );
 
     const numberOfGuestInput = screen.getByTestId('guests');
@@ -75,9 +100,16 @@ describe('BookingForm Component', () => {
   });
 
   it('should occasion input working properly', async () => {
+    const mockUpdateTime = vitest.fn(() => Promise.resolve());
+    const mockOnSubmit = vitest.fn(() => Promise.resolve());
     render(
-      <BookingForm availableTimes={availableTimes} updateTimes={vitest.fn} />
+      <BookingForm
+        availableTimes={availableTimes}
+        updateTimes={mockUpdateTime}
+        onSubmit={mockOnSubmit}
+      />
     );
+
     const occasionInput = screen.getByTestId('occasion');
     const anniversaryOption = screen.getByRole('option', {
       name: /anniversary/i,
@@ -87,9 +119,33 @@ describe('BookingForm Component', () => {
     expect(anniversaryOption.selected).toBe(true);
   });
 
-  it('should form rest to init value after submitting', () => {
+  it('should submitting form correctly', () => {
+    const mockUpdateTime = vitest.fn(() => Promise.resolve());
+    const mockOnSubmit = vitest.fn(() => Promise.resolve());
     render(
-      <BookingForm availableTimes={availableTimes} updateTimes={vitest.fn} />
+      <BookingForm
+        availableTimes={availableTimes}
+        updateTimes={mockUpdateTime}
+        onSubmit={mockOnSubmit}
+      />
+    );
+
+    const submitButton = screen.getByRole('button', { name: /book now/i });
+
+    fireEvent.click(submitButton);
+
+    expect(mockOnSubmit).toBeCalledTimes(1);
+  });
+
+  it('should form rest to init value after submitting', () => {
+    const mockUpdateTime = vitest.fn(() => Promise.resolve());
+    const mockOnSubmit = vitest.fn(() => Promise.resolve());
+    render(
+      <BookingForm
+        availableTimes={availableTimes}
+        updateTimes={mockUpdateTime}
+        onSubmit={mockOnSubmit}
+      />
     );
 
     const form = screen.getByTestId('form');

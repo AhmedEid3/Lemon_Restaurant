@@ -1,6 +1,8 @@
 import { useEffect, useReducer } from 'react';
 import BookingForm from '../components/booking-form/booking-form';
-import { fetchAPI } from '../hooks/mockFetchBooking';
+import { fetchAPI, submitAPI } from '../hooks/mockFetchBooking';
+import { Booking } from '../components/booking-form/booking.type';
+import { useNavigate } from 'react-router-dom';
 
 interface Action {
   type: 'init' | 'update';
@@ -25,23 +27,37 @@ const availableTimesReducer = (state: Array<string>, action: Action) => {
 };
 
 const BookingPage = () => {
+  const navigate = useNavigate();
+
   const [availableTimes, dispatch] = useReducer(availableTimesReducer, []);
 
-  const initializeTimes = () => {
-    dispatch({ type: 'init', payload: fetchAPI(new Date()) });
+  const initializeTimes = async () => {
+    dispatch({ type: 'init', payload: await fetchAPI(new Date()) });
   };
 
-  const updateTimes = (selectedDate: string) => {
-    dispatch({ type: 'update', payload: fetchAPI(new Date(selectedDate)) });
+  const updateTimes = async (selectedDate: string) => {
+    dispatch({
+      type: 'update',
+      payload: await fetchAPI(new Date(selectedDate)),
+    });
+  };
+
+  const submitForm = async (bookingValues: Booking) => {
+    const isBooked = await submitAPI(bookingValues);
+    if (isBooked) navigate('/booking/confirmed');
   };
 
   useEffect(() => {
-    initializeTimes();
+    void initializeTimes();
   }, []);
 
   return (
     <div>
-      <BookingForm availableTimes={availableTimes} updateTimes={updateTimes} />
+      <BookingForm
+        availableTimes={availableTimes}
+        updateTimes={updateTimes}
+        onSubmit={submitForm}
+      />
     </div>
   );
 };
