@@ -47,6 +47,9 @@ describe('BookingForm Component', () => {
     );
 
     const reservationDateInput = screen.getByTestId('reservationDate');
+    fireEvent.change(reservationDateInput, '2021-05-16');
+    expect(reservationDateInput).toBeInvalid();
+
     await userEvents.type(reservationDateInput, '2023-05-16');
     expect(reservationDateInput).toHaveValue('2023-05-16');
   });
@@ -119,9 +122,10 @@ describe('BookingForm Component', () => {
     expect(anniversaryOption.selected).toBe(true);
   });
 
-  it('should submitting form correctly', () => {
+  it('should disable submitting form ', () => {
     const mockUpdateTime = vitest.fn(() => Promise.resolve());
     const mockOnSubmit = vitest.fn(() => Promise.resolve());
+
     render(
       <BookingForm
         availableTimes={availableTimes}
@@ -134,6 +138,43 @@ describe('BookingForm Component', () => {
 
     fireEvent.click(submitButton);
 
+    expect(submitButton).toBeDisabled();
+    expect(mockOnSubmit).toBeCalledTimes(0);
+  });
+
+  it('should submitting form working', async () => {
+    const mockUpdateTime = vitest.fn(() => Promise.resolve());
+    const mockOnSubmit = vitest.fn(() => Promise.resolve());
+
+    render(
+      <BookingForm
+        availableTimes={availableTimes}
+        updateTimes={mockUpdateTime}
+        onSubmit={mockOnSubmit}
+      />
+    );
+
+    const reservationDateInput = screen.getByTestId('reservationDate');
+    await userEvents.type(
+      reservationDateInput,
+      new Date().toISOString().substring(0, 10)
+    );
+
+    const reservationTimeInput = screen.getByTestId('reservationTime');
+    await userEvents.selectOptions(reservationTimeInput, availableTimes[1]);
+
+    const numberOfGuestInput = screen.getByTestId('guests');
+    await userEvents.clear(numberOfGuestInput);
+    await userEvents.type(numberOfGuestInput, '3');
+
+    const occasionInput = screen.getByTestId('occasion');
+    await userEvents.selectOptions(occasionInput, 'anniversary');
+
+    const submitButton = screen.getByRole('button', { name: /book now/i });
+
+    fireEvent.click(submitButton);
+
+    expect(submitButton).toBeEnabled();
     expect(mockOnSubmit).toBeCalledTimes(1);
   });
 
@@ -157,8 +198,8 @@ describe('BookingForm Component', () => {
     fireEvent.submit(form);
 
     expect(reservationDateInput).toHaveValue('');
-    expect(reservationTimeInput).toHaveValue(availableTimes[0]);
+    expect(reservationTimeInput).toHaveValue('');
     expect(numberOfGuestInput).toHaveValue(1);
-    expect(occasionInput).toHaveValue('birthday');
+    expect(occasionInput).toHaveValue('');
   });
 });
