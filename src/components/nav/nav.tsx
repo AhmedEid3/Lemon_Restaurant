@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './nav.style.css';
 
 interface Props extends PropsWithChildren {
@@ -8,23 +8,16 @@ interface Props extends PropsWithChildren {
 }
 
 const NavItem = ({ children, link }: Props) => {
-  const navigate = useNavigate();
-
-  const handleNavigation = () => {
-    navigate(link);
-  };
-
   return (
     <li>
-      <div
-        role="link"
-        tabIndex={0}
-        onClick={() => handleNavigation()}
-        onKeyDown={() => handleNavigation()}
-        className="navbar__link"
+      <NavLink
+        to={link}
+        className={({ isActive }) =>
+          isActive ? 'navbar__link navbar__link--active' : 'navbar__link'
+        }
       >
         {children}
-      </div>
+      </NavLink>
     </li>
   );
 };
@@ -36,8 +29,8 @@ const Nav = () => {
         <NavItem link="/">home</NavItem>
         <NavItem link="/about">about</NavItem>
         <NavItem link="/menu">menu</NavItem>
-        <NavItem link="/reservations">reservations</NavItem>
-        <NavItem link="/booking">order online</NavItem>
+        <NavItem link="/booking">reservations</NavItem>
+        <NavItem link="/order">order online</NavItem>
         <NavItem link="/login">login</NavItem>
       </ul>
     </nav>
