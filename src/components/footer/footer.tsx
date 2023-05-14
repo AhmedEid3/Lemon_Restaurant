@@ -1,14 +1,8 @@
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Logo from '../logo/logo';
 import './footer.css';
 
 const Footer = () => {
-  const navigate = useNavigate();
-
-  const handleNavigation = (link: string) => {
-    navigate(link);
-  };
-
   return (
     <footer className="py-3">
       <div className="container">
@@ -23,70 +17,34 @@ const Footer = () => {
             <h2 className="footer-title">Doormat Navigation</h2>
             <ul className="footer__menu">
               <li>
-                <div
-                  tabIndex={0}
-                  role="link"
-                  className="footer__menu__item"
-                  onClick={() => handleNavigation('/')}
-                  onKeyDown={() => handleNavigation('/')}
-                >
+                <NavLink to="/" className={'footer__menu__item'}>
                   Home
-                </div>
+                </NavLink>
               </li>
               <li>
-                <div
-                  tabIndex={0}
-                  role="link"
-                  className="footer__menu__item"
-                  onClick={() => handleNavigation('/about')}
-                  onKeyDown={() => handleNavigation('/about')}
-                >
+                <NavLink to="/about" className={'footer__menu__item'}>
                   About
-                </div>
+                </NavLink>
               </li>
               <li>
-                <div
-                  tabIndex={0}
-                  role="link"
-                  className="footer__menu__item"
-                  onClick={() => handleNavigation('/menu')}
-                  onKeyDown={() => handleNavigation('/menu')}
-                >
-                  menu
-                </div>
+                <NavLink to="/menu" className={'footer__menu__item'}>
+                  Menu
+                </NavLink>
               </li>
               <li>
-                <div
-                  tabIndex={0}
-                  role="link"
-                  className="footer__menu__item"
-                  onClick={() => handleNavigation('/reservations')}
-                  onKeyDown={() => handleNavigation('/reservations')}
-                >
+                <NavLink to="/booking" className={'footer__menu__item'}>
                   Reservations
-                </div>
+                </NavLink>
               </li>
               <li>
-                <div
-                  tabIndex={0}
-                  role="link"
-                  className="footer__menu__item"
-                  onClick={() => handleNavigation('/booking')}
-                  onKeyDown={() => handleNavigation('/booking')}
-                >
+                <NavLink to="/order" className={'footer__menu__item'}>
                   Order Online
-                </div>
+                </NavLink>
               </li>
               <li>
-                <div
-                  tabIndex={0}
-                  role="link"
-                  className="footer__menu__item"
-                  onClick={() => handleNavigation('/login')}
-                  onKeyDown={() => handleNavigation('/login')}
-                >
-                  login
-                </div>
+                <NavLink to="/login" className={'footer__menu__item'}>
+                  Login
+                </NavLink>
               </li>
             </ul>
           </section>
