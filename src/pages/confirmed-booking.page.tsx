@@ -1,6 +1,6 @@
 const ConfirmedBookingPage = () => {
   return (
-    <main className="container">
+    <main className="container py-3">
       <p className="lead text-center">The booking has been confirmed! √</p>
     </main>
   );
