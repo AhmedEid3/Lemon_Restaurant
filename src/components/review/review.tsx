@@ -5,7 +5,9 @@ import ReviewType from './review.type';
 const Review = ({ rating, user, reviewText }: ReviewType) => {
   return (
     <div>
-      <Rating nStars={rating} />
+      <div className="mb-2">
+        <Rating nStars={rating} />
+      </div>
       <UserProfile {...user} />
       <p className="paragraph">{reviewText}</p>
     </div>

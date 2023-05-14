@@ -4,7 +4,7 @@ import Review from '../review/review';
 import alexanderImg from '../../assets/alexander.jpg';
 import darshanImg from '../../assets/darshan.jpg';
 import jacksonImg from '../../assets/jackson.jpg';
-import mandyImg from '../../assets/mandy.jpg';
+import usmanImg from '../../assets/usman-yousaf.jpg';
 
 const Testimonials = () => {
   const [reviews] = useState<Array<ReviewType>>([
@@ -14,7 +14,7 @@ const Testimonials = () => {
       user: { imgLink: alexanderImg, userName: 'Alexander John' },
     },
     {
-      rating: 3.5,
+      rating: 3,
       reviewText: 'Good restaurant',
       user: { imgLink: darshanImg, userName: 'Darshan Jemi' },
     },
@@ -24,9 +24,9 @@ const Testimonials = () => {
       user: { imgLink: jacksonImg, userName: 'Jackson Mark' },
     },
     {
-      rating: 4.3,
+      rating: 4,
       reviewText: 'Very Good restaurant',
-      user: { imgLink: mandyImg, userName: 'Laila Mask' },
+      user: { imgLink: usmanImg, userName: 'Usman Yousaf' },
     },
   ]);
 
